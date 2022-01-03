@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react_habbit_tracker/static/css/main.7044420c.css",
+    "main.js": "/react_habbit_tracker/static/js/main.3b907167.js",
+    "index.html": "/react_habbit_tracker/index.html",
+    "main.7044420c.css.map": "/react_habbit_tracker/static/css/main.7044420c.css.map",
+    "main.3b907167.js.map": "/react_habbit_tracker/static/js/main.3b907167.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7044420c.css",
+    "static/js/main.3b907167.js"
+  ]
+}
