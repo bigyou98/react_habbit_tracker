@@ -2,62 +2,45 @@ import React, { memo } from "react";
 import { useState, useCallback } from "react";
 import { Habit, NavBar } from ".";
 
-export const Habits = memo(() => {
+export const Habits = memo(({ presenter }) => {
+  console.log(presenter.getHabits());
   const [text, setText] = useState("");
-  const [id, setId] = useState(0);
-  const [habits, setHabits] = useState([]);
+  const [habits, setHabits] = useState(presenter.getHabits());
 
   const handleIncrement = useCallback(
-    (item) => {
-      setHabits(
-        habits.map((habit) =>
-          item.id === habit.id ? { ...habit, count: habit.count + 1 } : habit
-        )
-      );
+    (habit) => {
+      presenter.increment(habit, setHabits);
     },
-    [habits]
+    [presenter]
   );
 
   const handleDecrement = useCallback(
-    (item) => {
-      if (item.count > 0) {
-        setHabits(
-          habits.map((habit) =>
-            item.id === habit.id ? { ...habit, count: habit.count - 1 } : habit
-          )
-        );
-      }
-    },
-    [habits]
+    (habit) => presenter.decrement(habit, setHabits),
+    [presenter]
   );
 
   const handleDelete = useCallback(
     (id) => {
-      setHabits(habits.filter((habit) => habit.id !== id));
+      presenter.delete(id, setHabits);
     },
-    [habits]
+    [presenter]
   );
 
   const handleAdd = useCallback(() => {
-    setHabits(habits.concat({ text, id, count: 0 }));
-    setId((cur) => cur + 1);
-    setText("");
-  }, [text]);
+    presenter.add(text, setHabits);
+  }, [text, presenter]);
 
   const handleReset = useCallback(() => {
-    setHabits(
-      habits.map((habit) =>
-        habit.count !== 0 ? { ...habit, count: 0 } : habit
-      )
-    );
-  }, [habits]);
+    presenter.reset(setHabits);
+  }, [presenter]);
 
   return (
     <div>
       <NavBar
-        count={habits.reduce((acc, cur) => {
-          return cur.count !== 0 ? acc + 1 : acc;
-        }, 0)}
+        // count={habits.reduce((acc, cur) => {
+        //   return cur.count !== 0 ? acc + 1 : acc;
+        // }, 0)}
+        count={0}
       />
       <div>
         <input
