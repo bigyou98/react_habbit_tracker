@@ -5,23 +5,26 @@ import App from "./app";
 import "@fortawesome/fontawesome-free/js/all.js";
 import HabitPresenter from "./habits_presenter";
 
-const habitPresenter = new HabitPresenter([
-  {
-    id: 1,
-    text: "Red",
-    count: 1,
-  },
-  {
-    id: 2,
-    text: "Yellow",
-    count: 1,
-  },
-  {
-    id: 3,
-    text: "Green",
-    count: 0,
-  },
-]);
+const habitPresenter = new HabitPresenter(
+  [
+    {
+      id: 1,
+      text: "Red",
+      count: 1,
+    },
+    {
+      id: 2,
+      text: "Yellow",
+      count: 1,
+    },
+    {
+      id: 3,
+      text: "Green",
+      count: 0,
+    },
+  ],
+  100
+);
 
 ReactDOM.render(
   <React.StrictMode>
